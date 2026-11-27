@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Conduit's icon: a solved 3x3 board. Change this, then run node tools/make-icons.js. -->
+  <rect width="512" height="512" fill="#16181d"/>
+  <rect x="56" y="56" width="400" height="400" rx="40" fill="#1f232b"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="46">
+    <path d="M123 123 H389 V389" stroke="#e5484d"/>
+    <path d="M123 256 H256" stroke="#3e8ef7"/>
+    <path d="M123 389 H256" stroke="#30a46c"/>
+  </g>
+  <circle cx="123" cy="123" r="44" fill="#e5484d"/>
+  <circle cx="389" cy="389" r="44" fill="#e5484d"/>
+  <circle cx="123" cy="256" r="44" fill="#3e8ef7"/>
+  <circle cx="256" cy="256" r="44" fill="#3e8ef7"/>
+  <circle cx="123" cy="389" r="44" fill="#30a46c"/>
+  <circle cx="256" cy="389" r="44" fill="#30a46c"/>
+</svg>

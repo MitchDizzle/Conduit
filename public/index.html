@@ -6,32 +6,88 @@
   <meta name="theme-color" content="#16181d">
   <meta name="description" content="Join each pair of dots with a pipe and fill every square. Starts at 2×2.">
   <title>Conduit</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <meta name="apple-mobile-web-app-title" content="Conduit">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="game">
-    <header class="bar">
-      <a class="home" href="/games/">mtch.tech</a>
-      <h1>Conduit</h1>
-      <span class="spacer"></span>
-    </header>
+  <!-- Home -->
+  <main class="screen home" id="screen-home">
+    <img class="logo" src="icon.svg" alt="" width="96" height="96">
+    <h1>Conduit</h1>
+    <p class="tagline">Join the dots. Fill every square.</p>
+    <button type="button" class="btn btn--big" id="home-go">Play</button>
+    <p class="count" id="home-count"></p>
+    <div class="row">
+      <button type="button" class="btn" data-go="levels">Levels</button>
+      <button type="button" class="btn" data-go="settings">Settings</button>
+    </div>
+    <a class="site" href="/games/">mtch.tech games</a>
+  </main>
 
-    <p class="level" id="level-title">Level 1</p>
+  <!-- Levels -->
+  <main class="screen" id="screen-levels" hidden>
+    <header class="bar">
+      <button type="button" class="icon-btn" data-go="back" aria-label="Back">‹</button>
+      <h1 id="levels-title">Basics</h1>
+      <span></span>
+    </header>
+    <p class="sub" id="levels-blurb"></p>
+    <p class="count" id="levels-count"></p>
+    <div class="levels" id="levels-grid"></div>
+  </main>
+
+  <!-- Play -->
+  <main class="screen play" id="screen-play" hidden>
+    <header class="bar">
+      <button type="button" class="icon-btn" data-go="levels" aria-label="Levels">‹</button>
+      <div class="bar-mid">
+        <h1 id="play-title">Level 1</h1>
+        <p class="sub" id="play-sub"></p>
+      </div>
+      <button type="button" class="icon-btn" data-go="settings" aria-label="Settings">⚙</button>
+    </header>
 
     <canvas id="board" aria-label="Puzzle board. Drag from a dot to draw its pipe."></canvas>
 
     <p class="status" id="status" aria-live="polite"></p>
+    <p class="best" id="play-best"></p>
 
-    <nav class="controls" aria-label="Levels">
-      <button id="prev" type="button" aria-label="Previous level">‹</button>
-      <button id="restart" type="button">Restart</button>
-      <button id="next" type="button" aria-label="Next level">›</button>
+    <nav class="controls" aria-label="Board">
+      <button type="button" class="btn" id="undo">Undo</button>
+      <button type="button" class="btn" id="restart">Restart</button>
     </nav>
 
-    <p class="help">Join each pair of dots with a pipe. Pipes can't cross, and every square needs one.</p>
+    <p class="help" id="help"></p>
+
+    <section class="result" id="result" hidden aria-live="polite">
+      <div class="result-mark" id="result-mark">✓</div>
+      <h2 id="result-title">Solved</h2>
+      <p id="result-text"></p>
+      <div class="row">
+        <button type="button" class="btn" id="result-again">Try for ★</button>
+        <button type="button" class="btn btn--go" id="result-next">Next level</button>
+      </div>
+    </section>
   </main>
 
-  <script src="levels.js"></script>
+  <!-- Settings -->
+  <main class="screen" id="screen-settings" hidden>
+    <header class="bar">
+      <button type="button" class="icon-btn" data-go="back" aria-label="Back">‹</button>
+      <h1>Settings</h1>
+      <span></span>
+    </header>
+    <div class="settings" id="settings-body"></div>
+  </main>
+
+  <script src="packs/basics.js"></script>
+  <script src="sound.js"></script>
   <script src="game.js"></script>
 </body>
 </html>
