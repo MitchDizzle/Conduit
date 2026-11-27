@@ -35,7 +35,7 @@ piece's ends, so every level can be solved and the solution fills the grid.
 | 86+ | 9×9 | 9 |
 
 A level never repeats the one before it. `node tools/check.js` checks the
-first 120 (the deploy runs it too).
+first 120 (every push runs it too).
 
 Changing the generator changes every level for everyone. Saves only hold
 level numbers, so nobody loses progress, but the puzzles behind the numbers
@@ -48,11 +48,15 @@ the key; a new field gets a default in `load()`.
 
 ## Deploy
 
-A push to `main` that changes `public/` uploads it to `mtch.tech/conduit/`
-(`.github/workflows/deploy.yml`). The FTP secrets are the shared mtch.tech
-set, put on this repo with `tools/connect-repo.ps1 MitchDizzle/Conduit` from
-the mtch.tech repo; see its `docs/hosting-other-repos.md`. Until they're set,
-the upload is skipped with a warning.
+This repo has no deploy and no secrets. mtch.tech's workflow uploads
+`public/` to `mtch.tech/conduit/`, using the FTP keys only mtch.tech holds
+(its `src/_data/games.json` lists this repo; its
+`docs/hosting-other-repos.md` has the setup). To put a change live: on
+[mtch.tech's Actions tab](https://github.com/MitchDizzle/mtch.tech/actions),
+"Build and Deploy", Run workflow, game `conduit`. Every mtch.tech deploy
+uploads it too. It only works while this repo is public.
+
+`.github/workflows/check.yml` runs `tools/check.js` on each push.
 
 ## Next
 

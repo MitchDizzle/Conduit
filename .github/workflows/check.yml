@@ -1,0 +1,21 @@
+name: Check levels
+
+# This repo has no deploy and no secrets. mtch.tech's own workflow uploads
+# public/ to mtch.tech/conduit/ (its src/_data/games.json lists this repo).
+# To put a change live: Actions tab of MitchDizzle/mtch.tech, "Build and
+# Deploy", Run workflow, game: conduit. It also goes up whenever mtch.tech
+# deploys. That only works while this repo is public.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node tools/check.js
