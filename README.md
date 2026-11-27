@@ -48,13 +48,19 @@ the key; a new field gets a default in `load()`.
 
 ## Deploy
 
-This repo has no deploy and no secrets. mtch.tech's workflow uploads
-`public/` to `mtch.tech/conduit/`, using the FTP keys only mtch.tech holds
-(its `src/_data/games.json` lists this repo; its
-`docs/hosting-other-repos.md` has the setup). To put a change live: on
-[mtch.tech's Actions tab](https://github.com/MitchDizzle/mtch.tech/actions),
-"Build and Deploy", Run workflow, game `conduit`. Every mtch.tech deploy
-uploads it too. It only works while this repo is public.
+This repo has no deploy and no secrets. mtch.tech serves the commit named by
+`ref` in its `src/_data/games.json`, uploading `public/` to
+`mtch.tech/conduit/`. To release, push here, then in the mtch.tech repo:
+
+```powershell
+node tools/release-game.js conduit
+git commit -am "Release Conduit <sha>: <what changed>"
+git push
+```
+
+That deploy uploads only this game; the site isn't rebuilt. It only works
+while this repo is public. mtch.tech's `docs/hosting-other-repos.md` has the
+setup.
 
 `.github/workflows/check.yml` runs `tools/check.js` on each push.
 
